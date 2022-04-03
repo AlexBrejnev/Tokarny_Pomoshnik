@@ -74,6 +74,9 @@
                 pos: 0.3 * root.width, 0.3 * root.height
                 text: 'мал.д.'
                 group: 'geometry'
+                on_release:
+                    self.text = 'МАЛ.Д.'
+                    root.calculate_m_diam()
 
 
             ToggleButton:
