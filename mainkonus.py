@@ -109,6 +109,25 @@ class Container(AnchorLayout):
                                        "значение и снова нажмите на кнопку с искомой величиной."
 
 
+    def calculate_big_diam(self):
+        import math
+        try:
+            self.txt_sprav_info.text = ""
+            angle_In_Radians = math.radians(float(self.txtinp_ugol.text))
+            tangens_ugla_in_radiana = math.tan(angle_In_Radians)
+
+            big_diam = D = (2 * tangens_ugla_in_radiana * float(self.txtinp_dlina.text)) + \
+                           float(self.txtinp_m_diam.text)
+            bd_result_okruglenie = round(big_diam, 2)
+            self.txtinp_b_diam.text = str(bd_result_okruglenie)
+            self.txt_sprav_info.text = "Больший диаметр равен " + (self.txtinp_b_diam.text) + " условных единиц " \
+                                                                                            "(обычно указывают в мм)."
+
+        except:
+            self.txt_sprav_info.text = "Ошибка расчета. Убедитесь, что все данные указаны верно. Исправьте " \
+                                       "значение и снова нажмите на кнопку с искомой величиной."
+
+
 # создаем класс MyApp, унаследованный от класса App. Основной класс, ответственный за запуск приложения.
 class MyApp(App):
     def build(self):
