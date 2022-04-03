@@ -86,6 +86,10 @@
                 pos: 0.3 * root.width, 0.3 * root.height
                 text: 'бол.д.'
                 group: 'geometry'
+                on_release:
+                    self.text = 'БОЛ.Д.'
+                    root.calculate_big_diam()
+
 
 
         GridLayout:
