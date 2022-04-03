@@ -67,7 +67,8 @@ class Container(AnchorLayout):
                                            "угол слишком " \
                                            "велик."
         except:
-            print("ошибка")
+            self.txt_sprav_info.text = "Ошибка расчета. Убедитесь, что все данные указаны верно. Исправьте " \
+                                       "значение и снова нажмите на кнопку с искомой величиной."
 
     def calculate_ugol(self):
         import math
@@ -89,7 +90,8 @@ class Container(AnchorLayout):
                                            "убедитесь, что малый диаметр не превышает большой. Возможно, указана" \
                                            " слишком большая длина."
         except:
-            print("ошибка")
+            self.txt_sprav_info.text = "Ошибка расчета. Убедитесь, что все данные указаны верно. Исправьте " \
+                                       "значение и снова нажмите на кнопку с искомой величиной."
 
     def calculate_m_diam(self):
         import math
@@ -98,10 +100,13 @@ class Container(AnchorLayout):
             angle_In_Radians = math.radians(float(self.txtinp_ugol.text))
             tangens_ugla_in_radiana = math.tan(angle_In_Radians)
             d = float(self.txtinp_b_diam.text) - (2 * tangens_ugla_in_radiana * float(self.txtinp_dlina.text))
-            result_okruglenie = round(d, 4)
+            result_okruglenie = round(d, 2)
             self.txtinp_m_diam.text = str(result_okruglenie)
+            self.txt_sprav_info.text = "Малый диаметр равен " + (self.txtinp_m_diam.text) + " условных единиц " \
+                                                                                            "(обычно указывают в мм)."
         except:
-            print("ошибка")
+            self.txt_sprav_info.text = "Ошибка расчета. Убедитесь, что все данные указаны верно. Исправьте " \
+                                       "значение и снова нажмите на кнопку с искомой величиной."
 
 
 # создаем класс MyApp, унаследованный от класса App. Основной класс, ответственный за запуск приложения.
