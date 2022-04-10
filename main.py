@@ -20,16 +20,15 @@ from kivy.uix.togglebutton import ToggleButton
 from kivy.properties import ObjectProperty
 # подключение экранной клавиатуры смартфона
 from kivy.config import Config
+
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 # задаем размер окна пропорционально дисплею устройства
 Window.size = (270, 540)
 
 
-
 # создаем класс Container, унаследованный от класса AnchorLayout
 class Container(AnchorLayout):
-
     tgb_dlina = (ObjectProperty)
     tgb_ugol = (ObjectProperty)
     tgb_m_diam = (ObjectProperty)
@@ -47,7 +46,6 @@ class Container(AnchorLayout):
 
     def change_text(self):
         self.txt_sprav_info.text = "Справка"
-
 
     def calculate_dlina(self):
         import math
@@ -83,8 +81,23 @@ class Container(AnchorLayout):
             self.txtinp_ugol.text = str(alfa_result_okruglenie)
             self.txt_sprav_info.text = "Резцодержатель необходимо повернуть на " \
                                        "" + (self.txtinp_ugol.text) + "" \
-                                       " градуса." + " Полный угол конуса будет " \
-                                                     "составлять " + (str(full_alfa_result_okruglenie)) + " градуса."
+                                                                      " градуса." + " Полный угол конуса будет " \
+                                                                                    "составлять " + (
+                                           str(full_alfa_result_okruglenie)) + " градуса."
+
+            degree = float(self.txtinp_ugol.text)
+
+            minutes = (degree % 1) * 60
+            seconds = (minutes % 1) * 60
+
+            print(int(degree))
+
+            minutes_rounding = round(minutes, 0)
+            print(int(minutes_rounding))
+
+            seconds_rounding = round(seconds, 0)
+            print(int(seconds_rounding))
+
             if alfa_result_okruglenie < 0:
                 self.txt_sprav_info.text = "У Вас получился отрицательный результат. Проверьте все данные, " \
                                            "убедитесь, что малый диаметр не превышает большой. Возможно, указана" \
@@ -113,7 +126,6 @@ class Container(AnchorLayout):
             self.txt_sprav_info.text = "Ошибка расчета. Убедитесь, что все данные указаны верно. Исправьте " \
                                        "значение и снова нажмите на кнопку с искомой величиной."
 
-
     def calculate_big_diam(self):
         import math
         try:
@@ -126,7 +138,7 @@ class Container(AnchorLayout):
             bd_result_okruglenie = round(big_diam, 2)
             self.txtinp_b_diam.text = str(bd_result_okruglenie)
             self.txt_sprav_info.text = "Больший диаметр равен " + (self.txtinp_b_diam.text) + " условных единиц " \
-                                                                                            "(обычно указывают в мм)."
+                                                                                              "(обычно указывают в мм)."
 
             if bd_result_okruglenie < 0:
                 self.txt_sprav_info.text = "У Вас получился отрицательный результат. Проверьте все данные, " \
@@ -146,7 +158,7 @@ class MyApp(App):
         return Container()
 
 
-# проверка, что запускаем методом .run сам файлик mainkonus.py, а не из другого файла путем импорта. Метод .run прописан
+# проверка, что запускаем методом .run сам файлик main.py, а не из другого файла путем импорта. Метод .run прописан
 # в классе App
 if __name__ == '__main__':
     MyApp().run()
