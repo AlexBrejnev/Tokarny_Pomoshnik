@@ -1,0 +1,207 @@
+<Container>:
+    tgb_dlina: tgb_dlina
+    tgb_ugol: tgb_ugol
+    tgb_m_diam: tgb_m_diam
+    tgb_b_diam: tgb_b_diam
+    lbl_dlina: lbl_dlina
+    txtinp_dlina: txtinp_dlina
+    lbl_ugol: lbl_ugol
+    txtinp_ugol: txtinp_ugol
+    lbl_m_diam: lbl_m_diam
+    txtinp_m_diam: txtinp_m_diam
+    lbl_b_diam: lbl_b_diam
+    txtinp_b_diam: txtinp_b_diam
+    txt_sprav_info: txt_sprav_info
+    btn_calculate: btn_calculate
+    GridLayout:
+        orientation: 'tb-lr'
+        cols: 1             # строки
+        rows: 15             # ряды
+        id: greatlygrid         # идентификатор
+        padding: 10, 10
+        spacing: 10, 10
+        row_default_height: 30
+        canvas:
+            Color:
+                rgba: .7, .9, .6, .8
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Параметры конуса'
+            color: 1,1,1,9
+            font_size: dp(20)
+            canvas:
+                Color:
+                    rgba: .9, .9, .9, .1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        GridLayout:
+            cols: 4             # строки
+            rows: 1             # ряды
+
+            ToggleButton:
+                id: tgb_dlina
+                size_hint: 0.3, 1.2
+                size: 0.25 * root.width, 0.25 * root.height
+                pos: 0.3 * root.width, 0.3 * root.height
+                text: 'длина'
+                group: 'geometry'
+                on_release:
+                    self.text = 'ДЛИНА'
+                    root.calculate_dlina()
+
+
+
+            ToggleButton:
+                id: tgb_ugol
+                size_hint: 0.3, 0.2
+                size: 0.25 * root.width, 0.25 * root.height
+                pos: 0.3 * root.width, 0.3 * root.height
+                text: 'угол'
+                group: 'geometry'
+                on_release:
+                    self.text = 'УГОЛ'
+                    root.calculate_ugol()
+
+
+
+
+            ToggleButton:
+                id: tgb_m_diam
+                size_hint: 0.3, 0.2
+                size: 0.25 * root.width, 0.25 * root.height
+                pos: 0.3 * root.width, 0.3 * root.height
+                text: 'мал.д.'
+                group: 'geometry'
+                on_release:
+                    self.text = 'МАЛ.Д.'
+                    root.calculate_m_diam()
+
+
+            ToggleButton:
+                id: tgb_b_diam
+                size_hint: 0.3, 0.2
+                size: 0.25 * root.width, 0.25 * root.height
+                pos: 0.3 * root.width, 0.3 * root.height
+                text: 'бол.д.'
+                group: 'geometry'
+                on_release:
+                    self.text = 'БОЛ.Д.'
+                    root.calculate_big_diam()
+
+
+
+        GridLayout:
+
+            cols: 2             # строки
+            rows: 5             # ряды
+            id: greatlygrid         # идентификатор
+            padding: 10, 20
+            spacing: 40, 20
+            row_default_height: 36
+            row_default_width: 25
+
+            Label:
+                id: lbl_dlina
+                text: 'длина:'
+                color: 1,1,1,9
+                font_size: dp(20)
+                text_size:self.size
+            TextInput:
+                id: txtinp_dlina
+                font_size: dp(20)
+                size_hint: 0.9, 0.9
+                text: ""
+                background_color: 9,2,9,9
+                color: (1,2,0,1)
+                focus: True
+                input_type: 'number'
+                input_filter: 'float'
+                height: 20
+                multiline: False
+            Label:
+                id: lbl_ugol
+                text: 'угол:'
+                color: 1,1,1,9
+                font_size: dp(20)
+                text_size:self.size
+            TextInput:
+                id: txtinp_ugol
+                font_size: dp(20)
+                size_hint: 0.9, 0.9
+                text: ""
+                background_color: 9,2,9,9
+                color: (1,2,0,1)
+                input_type: 'number'
+                input_filter: 'float'
+                height: 20
+                multiline: False
+            Label:
+                id: lbl_m_diam
+                text: 'малый д.:'
+                color: 1,1,1,9
+                font_size: dp(20)
+                text_size:self.size
+            TextInput:
+                id: txtinp_m_diam
+                font_size: dp(20)
+                size_hint: 0.9, 0.9
+                text: ""
+                background_color: 9,2,9,9
+                color: (1,2,0,1)
+                input_type: 'number'
+                input_filter: 'float'
+                height: 20
+                multiline: False
+            Label:
+                id: lbl_b_diam
+                text: 'больш. д.:'
+                color: 1,1,1,9
+                font_size: dp(20)
+                text_size:self.size
+            TextInput:
+                id: txtinp_b_diam
+                font_size: dp(20)
+                size_hint: 0.9, 0.9
+                text: ""
+                background_color: 9,2,9,9
+                color: (1,2,0,1)
+                input_type: 'number'
+                input_filter: 'float'
+                height: 20
+                multiline: False
+            FloatLayout:
+                size: root.width, root.height
+                padding: 20, 50
+                spacing: 10, 20
+                TextInput:
+                    id: txt_sprav_info
+                    text: 'Напишите три известные Вам величины и для расчета нажмите на параметр, который необходимо рассчитать.'
+                    color: 0,1,1,9
+                    font_size: dp(14)
+                    pos_hint: {"x":-0.1, "y":-3.0}
+                    size_hint: 2.5, 3.0
+                    multiline: True
+                    text_size:self.size
+                    disabled: True
+
+                Button:
+                    id: btn_calculate
+                    text: "вычислить!"
+                    size_hint: 1.97, 1.2
+                    pos_hint: {"x":0.17, "y":-4.4}
+                    markup: True
+                    background_color: 2,1,2,1
+                    font_size: dp(20)
+                    disabled: True
+
+
+
+
+
+
+
+
