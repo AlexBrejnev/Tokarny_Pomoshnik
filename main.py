@@ -20,11 +20,12 @@ from kivy.uix.togglebutton import ToggleButton
 from kivy.properties import ObjectProperty
 # подключение экранной клавиатуры смартфона
 from kivy.config import Config
+Config.set('graphics', 'resizable', True)
 
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 # задаем размер окна пропорционально дисплею устройства
-Window.size = (270, 540)
+
 
 
 # создаем класс Container, унаследованный от класса AnchorLayout
